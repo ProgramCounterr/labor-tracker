@@ -10,14 +10,33 @@
         <link rel="stylesheet" type="text/css" href="styles/reset.css"/>
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+        <!-- Font awesome is used for the icons and requires this line-->
+        <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <header>
             <nav>
-                
+                <a href="#" id="site-name">Labor Tracker</a>
+                <ul class="nav">
+                    <li><a href="input.html"><i class="fas fa-clock"></i>Input labor</a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
+                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
+                </ul>
             </nav>
         </header>
+
+        <div class="input-page-content">
+
+            <form action="#">
+                <div class="searchbar-container">
+                    <i class="fas fa-search"></i>
+                    <input id="searchbar-box" type="text">
+                </div>
+            </form>
+            
+        </div>
+
     </body>
 
 </html>
