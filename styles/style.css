@@ -27,6 +27,10 @@ header > nav a {
     left: 5%;
 }
 
+    a#site-name:hover {
+        color: white;
+    }
+
 ul.nav {
     height: 100%;
     float: right;
@@ -50,17 +54,30 @@ header ul.nav li a {
         opacity: 1.0;
     }
 
-.searchbar-container {
-    height: 39px;
-    width: 360px;
-    border: 1px solid rgb(209, 205, 205);
-    border-radius: 51px;
-    position: absolute;
-    top: 30%;
-    right: 10%;
+.buffer {
+    height: 80px;
 }
 
-    .searchbar-container:hover {
+#hours-container {
+    position: absolute;
+    top: 200px;
+    left: 180px;
+}
+
+input#hours {
+    border: 1px solid rgb(209, 205, 205);
+    width: 200px;
+    outline: none;
+}
+
+.searchbar-container {
+    height: 39px;
+    min-width: 70%;
+    border: 1px solid rgb(209, 205, 205);
+    border-radius: 51px;
+}
+
+    .searchbar-container:hover, input#hours:hover {
         box-shadow: 0 0 3px 2px #dbd9d9;
     }
 
@@ -69,11 +86,34 @@ header ul.nav li a {
     opacity: .7;
 }
 
-#searchbar-box {
-    width: 80%;
+#searchbar-label {
+    position: relative;
+    left: 8%;
+}
+
+input#searchbar {
+    width: 90%;
     height: 100%;
     outline: 0px;
     border: none;
     background-color: transparent;
 }
+/*--- adjust to make the page look better on small screens ---*/
+@media only screen and (max-width: 768px) {
+    .col-md-4 {
+        margin-bottom: 5%;
+    }
 
+    .searchbar-container {
+        max-width: 30%; 
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+    [type="submit"] {
+        position: relative;
+        left: 50%;
+        top: 25%;
+    }
+}
