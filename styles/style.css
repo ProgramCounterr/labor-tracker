@@ -56,4 +56,5 @@ header ul.nav li a {
         color: white;
         text-decoration: none;
         opacity: 1.0;
+        outline: none;
     }
