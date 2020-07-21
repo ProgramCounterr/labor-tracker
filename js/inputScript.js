@@ -27,10 +27,10 @@ function validateForm () {
     }
 
     const datalist = document.querySelector('datalist');
-    const optionValues = [...datalist.children].map(option => option.value);
+    const optionValues = [...datalist.children].map(option => option.value.toLowerCase());
     const workAreaError = datalist.nextElementSibling;
     // check for no input or an input that is not on the list of work areas
-    if(workAreaInput.value === "" || !optionValues.includes(workAreaInput.value)) {
+    if(workAreaInput.value === "" || !optionValues.includes(workAreaInput.value.toLowerCase())) {
         workAreaError.textContent = "Please pick a valid work area";
         if(valid) {
             workAreaInput.focus(); // only focus if previous input was valid and this one is not
@@ -44,14 +44,18 @@ function validateForm () {
     return valid;
 }
 
+// initialize
 (function () {
     const submit = document.getElementById('submit');
     submit.addEventListener('click', () => {
         let valid = validateForm();
+        const buffer = document.querySelector('.buffer');
         if(valid) { // if form inputs are valid
             clearFormInputs();
-            const buffer = document.querySelector('.buffer');
             buffer.textContent = "Successfully submitted!";
+        }
+        else {
+            buffer.textContent = "";
         }
     }, false);
 })();
