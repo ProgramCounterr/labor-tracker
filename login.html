@@ -4,6 +4,7 @@
 		<meta charset="utf-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Rowan Dakota">
 
 		<title>Twin Oaks Labor Tracker</title>
 		<link rel="icon" href="images/logo.png"/>
@@ -25,25 +26,25 @@
 		<div class="container">
 
 			<h2>Log in</h2>
-
-			<form action="" name="mainform" method="post">
+			<!-- TODO: add backend stuff (add method="post", action, etc.) -->
+			<form action="profile.html" name="mainform"> 
 				<div class="form-group">
 					<label for="username">Username: </label>
-					<input type="text" id="username" class="form-control" placeholder="Enter Username" />
+					<input type="text" id="username" class="form-control" placeholder="Enter Username" name="username"/>
 					<span class="alert-danger" id="msg_username"></span>
 				</div>
 
 				<div class="form-group">
 					<label for="password">Password: </label>
 					<div class="input-group mb-2">
-						<input type="password" id="password" class="form-control" placeholder="Enter Password" />
+						<input type="password" id="password" class="form-control" placeholder="Enter Password" name="password"/>
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fa fa-eye"></i></span>
 						</div>
 					</div>
 					<span class="alert-danger" id="msg_password"></span>
 				</div>
-
+				<!-- TODO: add 'Remember me' functionality -->
 				<div class="form-group">
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>

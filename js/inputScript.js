@@ -1,11 +1,4 @@
-/** Clears all the inputs of their values */
-function clearFormInputs () {
-    const form = document.querySelector('form');
-    for(let i=0; i<form.elements.length - 1; i++) { // do not iterate over button
-        form.elements[i].value = "";
-    }
-}
-
+// author: Peter Chen
 /**
  * Returns a boolean indicating whether the values in the inputs are valid
  * If not, displays appropriate error messages
@@ -18,7 +11,7 @@ function validateForm () {
     const hoursInputError = hoursInput.nextElementSibling;
     // check for no input, negative input, or a non-number input
     if(hoursInput.value === "" || +hoursInput.value < 0 || isNaN(hoursInput.value)) {
-        hoursInputError.textContent = "Please input a positive number";
+        hoursInputError.textContent = "Please enter a positive number";
         hoursInput.focus();
         if(valid) valid = false;
     }
@@ -47,15 +40,16 @@ function validateForm () {
 // initialize
 (function () {
     const submit = document.getElementById('submit');
-    submit.addEventListener('click', () => {
+    submit.addEventListener('click', (e) => {
         let valid = validateForm();
         const buffer = document.querySelector('.buffer');
         if(valid) { // if form inputs are valid
-            clearFormInputs();
+            document.querySelector('form').reset(); // clear form inputs
             buffer.textContent = "Successfully submitted!";
         }
         else {
             buffer.textContent = "";
         }
+        e.preventDefault(); // TODO: Submit form when valid
     }, false);
 })();
