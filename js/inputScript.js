@@ -1,3 +1,4 @@
+// author: Peter Chen
 /**
  * Returns a boolean indicating whether the values in the inputs are valid
  * If not, displays appropriate error messages
