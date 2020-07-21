@@ -11,7 +11,7 @@ body {
 
 header nav {
     height: 45px;
-    width: 100%;
+    min-width: 100%;
     background-color: teal;
 }
 
@@ -66,52 +66,35 @@ header ul.nav li a {
 
 input#hours {
     border: 1px solid rgb(209, 205, 205);
+    display: block;
     width: 200px;
     outline: none;
 }
 
-.searchbar-container {
-    height: 39px;
-    min-width: 70%;
+input#work-area {
+    display: block;
+    width: 90%;
     border: 1px solid rgb(209, 205, 205);
-    border-radius: 51px;
+    outline: 0px;
 }
 
-    .searchbar-container:hover, input#hours:hover {
+    input#work-area:hover, input#hours:hover {
         box-shadow: 0 0 3px 2px #dbd9d9;
     }
-
-.fa-search {
-    padding: 5px;
-    opacity: .7;
-}
-
-#searchbar-label {
-    position: relative;
-    left: 8%;
-}
-
-input#searchbar {
-    width: 90%;
-    height: 100%;
-    outline: 0px;
-    border: none;
-    background-color: transparent;
-}
 /*--- adjust to make the page look better on small screens ---*/
 @media only screen and (max-width: 768px) {
     .col-md-4 {
         margin-bottom: 5%;
     }
 
-    .searchbar-container {
-        max-width: 30%; 
+    input#work-area {
+        max-width: 70%; 
     }
 }
 
 
 @media only screen and (min-width: 768px) {
-    [type="submit"] {
+    #submit {
         position: relative;
         left: 50%;
         top: 25%;
