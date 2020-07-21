@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="styles/reset.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="styles/style.css"/>
-        <!-- Font awesome is used for the icons and requires this line-->
+        <!-- Font awesome is used for the icons (<i> elements) and requires this line-->
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
 
@@ -33,29 +33,27 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="hours">Hours worked:</label>
-                        <p>
-                            <input id="hours" type="text" name="hours" autofocus/>
-                        </p>
+                        <input id="hours" type="text" name="hours" autofocus/>
+                        <span class="alert-danger"></span>
                     </div>
 
                     <div class="col-md-4">
-                        <div id="searchbar-label">
-                            <label for="searchbar">Search for work area:</label>
-                            <br/>
-                        </div>
-                        <div class="searchbar-container">
-                            <i class="fas fa-search"></i>
-                            <input id="searchbar" type="text" name="work-area"/>
-                        </div>
+                        <label for="searchbar">Search for work area:</label>
+                        <input type="text" list="work-areas" name="work-area" id="work-area">
+                        <datalist id="work-areas">
+                            <option value="Tofu Hut"></option>
+                            <option value="Pizza"></option>
+                        </datalist> 
+                        <span class="alert-danger"></span>
                     </div>
 
                     <div class="col-md-4">
-                        <input type="submit" class="btn btn-primary btn-lg"/>
+                        <input type="button" class="btn btn-primary btn-lg" id="submit" value="Submit"/>
                     </div>
 
                 </div>
             </form>
         </div>
-
+        <script src="js/inputScript.js"></script>
     </body>
 </html>
