@@ -1,0 +1,47 @@
+.buffer {
+    height: 80px;
+    color: green;
+}
+
+#hours-container {
+    position: absolute;
+    top: 200px;
+    left: 180px;
+}
+
+input#hours {
+    border: 1px solid rgb(209, 205, 205);
+    display: block;
+    width: 200px;
+    outline: none;
+}
+
+input#work-area {
+    display: block;
+    width: 90%;
+    border: 1px solid rgb(209, 205, 205);
+    outline: 0px;
+}
+
+    input#work-area:hover, input#hours:hover {
+        box-shadow: 0 0 3px 2px #dbd9d9;
+    }
+/*--- adjust to make the page look better on small screens ---*/
+@media only screen and (max-width: 768px) {
+    .col-md-4 {
+        margin-bottom: 5%;
+    }
+
+    input#work-area {
+        max-width: 70%; 
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+    #submit {
+        position: relative;
+        left: 50%;
+        top: 25%;
+    }
+}
