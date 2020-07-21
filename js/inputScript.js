@@ -10,7 +10,7 @@ function validateForm () {
     const hoursInputError = hoursInput.nextElementSibling;
     // check for no input, negative input, or a non-number input
     if(hoursInput.value === "" || +hoursInput.value < 0 || isNaN(hoursInput.value)) {
-        hoursInputError.textContent = "Please input a positive number";
+        hoursInputError.textContent = "Please enter a positive number";
         hoursInput.focus();
         if(valid) valid = false;
     }
