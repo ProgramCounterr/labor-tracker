@@ -1,4 +1,4 @@
-
+// initialize
 (function () {
     const showPassword = document.querySelector('div.input-group-append');
     showPassword.addEventListener('click', () => {

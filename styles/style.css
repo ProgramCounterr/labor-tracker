@@ -29,8 +29,10 @@ header > nav a {
     left: 5%;
 }
 
-    a#site-name:hover {
+    a#site-name:hover, a#site-name:focus {
         color: white;
+        outline: none;
+        text-decoration: underline;
     }
 
 ul.nav {
@@ -50,8 +52,8 @@ header ul.nav li a {
     opacity: .80;
 }
 
-    header ul.nav li a:hover {
-        text-decoration: none;
+    header ul.nav li a:hover, header ul.nav li a:focus {
         color: white;
+        text-decoration: none;
         opacity: 1.0;
     }
