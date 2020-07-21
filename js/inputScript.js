@@ -48,10 +48,13 @@ function validateForm () {
     const submit = document.getElementById('submit');
     submit.addEventListener('click', () => {
         let valid = validateForm();
+        const buffer = document.querySelector('.buffer');
         if(valid) { // if form inputs are valid
             clearFormInputs();
-            const buffer = document.querySelector('.buffer');
             buffer.textContent = "Successfully submitted!";
+        }
+        else {
+            buffer.textContent = "";
         }
     }, false);
 })();
