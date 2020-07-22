@@ -13,7 +13,7 @@ body {
 
 /** Header styling */
 header nav {
-    height: 45px;
+    height: 80px;
     min-width: 100%;
     background-color: teal;
 }
@@ -28,6 +28,7 @@ header > nav a {
     font-weight: 600;
     position: absolute;
     left: 5%;
+	margin: 15px;
 }
 
     a#site-name:hover, a#site-name:focus {
@@ -59,3 +60,8 @@ header ul.nav li a {
         opacity: 1.0;
         outline: none;
     }
+
+#logo {
+  position: absolute;
+  margin: 6px;
+}
