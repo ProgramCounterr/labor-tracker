@@ -1,4 +1,32 @@
-/* author: Peter Chen */
+/* author: Peter Chen and Rowan Dakota*/
 div.input-group-append:hover {
     cursor: pointer;
+}
+
+.pathimage {
+  background-image: url("../images/path.jpg"); 
+  background-size: cover;        /* Resize the background image to cover the entire container */
+  background-position: center;
+  position: relative;  
+}
+
+/* add an overlay to the background image */
+.overlay {
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(200, 244, 244, 0.8);
+  opacity: .5;
+  position: fixed;  
+  z-index: -1; /*Makes it so the elements aren't covered by the overlay*/
+}
+
+h2 {
+  font-weight: bold;
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
 }
