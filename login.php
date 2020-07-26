@@ -62,11 +62,11 @@
 		
 		<?php
 		require('model/connect-db.php');
-		//I don't think these trim statmenets actually do anything
-		$user = trim($_GET['username']);
-		$pwd = trim($_GET['password']);
 		//The isset makes sure that there is something in the text fields
-		if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($user) && isset($pwd)){			
+		if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['username']) && isset($_GET['password'])){			
+			
+			$user = trim($_GET['username']);
+			$pwd = trim($_GET['password']);
 			
 			//:user and :pwd are bound to the variables down below
 			$query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
@@ -90,6 +90,11 @@
 			//if the statement is correctly fetched, then it goes to the profile page
 			else{
 				$statement->closeCursor();
+				//starts a session object
+				session_start();
+				$_SESSION['user'] = $user;
+				$_SESSION['pwd'] = $pwd;
+				//branches to other page
 				header('Location: profile.html');
 			}
 	
