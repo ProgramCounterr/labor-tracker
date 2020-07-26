@@ -17,7 +17,14 @@
         <!-- Font awesome is used for the icons (<i> elements) and requires this line-->
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
-    
+ 
+<!--checks to see if the user is logged in-->
+<?php
+session_start();
+if (isset($_SESSION['user']))
+{
+?>
+ 
     <body>
         <header>
             <nav> 
@@ -42,5 +49,15 @@
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script src="js/profileScript.js"></script>
+
+<?php
+//close bracket from the "if" from before
+}
+else{   // not logged in yet
+	header('Location: login.php');  // redirect to the login page
+}
+?>
+
+		
 	</body>
 </html>

@@ -93,6 +93,8 @@
 				//starts a session object
 				session_start();
 				$_SESSION['user'] = $user;
+				//we should change this so it stores an encoding of the password later.
+				//something like, $_SESSION['pwd'] = md5($pwd);
 				$_SESSION['pwd'] = $pwd;
 				//branches to other page
 				header('Location: profile.html');
