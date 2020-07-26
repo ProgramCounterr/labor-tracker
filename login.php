@@ -28,7 +28,7 @@
 		
 			<h2>Log in</h2>
 			<!-- TODO: add backend stuff (add method="post", action, etc.) -->
-			<form action="profile.html" name="mainform"> 
+			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="mainform"> 
 				<div class="form-group">
 					<label for="username">Username: </label>
 					<input type="text" id="username" class="form-control" placeholder="Enter Username" name="username"/>
@@ -59,5 +59,45 @@
 		
 
 		<script src="js/loginScript.js"></script>
+		
+		<?php
+		require('model/connect-db.php');
+		//I don't think these trim statmenets actually do anything
+		$user = trim($_GET['username']);
+		$pwd = trim($_GET['password']);
+		//The isset makes sure that there is something in the text fields
+		if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($user) && isset($pwd)){			
+			
+			//:user and :pwd are bound to the variables down below
+			$query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
+
+			$statement = $db->prepare($query);
+
+			$statement->bindValue(':user', $user);
+			$statement->bindValue(':pwd', $pwd);
+	
+			
+			$statement->execute();
+			
+			$result = $statement->fetch();
+			
+			//This is the case where the username/password is incorrect
+			if (!$result){
+				echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
+				$statement->closeCursor();
+				exit;
+			}
+			//if the statement is correctly fetched, then it goes to the profile page
+			else{
+				$statement->closeCursor();
+				header('Location: profile.html');
+			}
+	
+			$statement->closeCursor();
+			
+		}
+		?>
+		
+		
 	</body>
 </html>
