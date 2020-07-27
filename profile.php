@@ -27,15 +27,13 @@ if (isset($_SESSION['user']))
  
     <body>
         <?php include('header.html'); ?>
-		
-		
-		<div id="chart"></div>
+        
+        <div class="welcome">
+            <h2><?= "Welcome, " . $_SESSION['user'] . "!"; ?></h2>
+        </div>
 
-		<div class="form-group">
-			<div class="checkbox">
-				<label><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>
-			</div>
-		</div>
+		<div id="chart"></div>
+        <label><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script src="js/profileScript.js"></script>
@@ -48,6 +46,5 @@ else{   // not logged in yet
 }
 ?>
 
-		
 	</body>
 </html>
