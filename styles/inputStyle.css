@@ -10,26 +10,30 @@
     left: 180px;
 }
 
-input#hours {
+input[name] {
     border: 1px solid rgb(209, 205, 205);
     display: block;
-    width: 200px;
     outline: none;
 }
 
-input#work-area {
-    display: block;
-    width: 90%;
-    border: 1px solid rgb(209, 205, 205);
-    outline: 0px;
+input:hover {
+    box-shadow: 0 0 3px 2px #dbd9d9;
 }
 
-    input#work-area:hover, input#hours:hover {
-        box-shadow: 0 0 3px 2px #dbd9d9;
-    }
+input#hours {
+    width: 70%;
+    max-width: 200px;
+}
+
+input#work-area {
+    width: 90%;
+    max-width: 300px;
+}
+
 /*--- adjust to make the page look better on small screens ---*/
 @media only screen and (max-width: 768px) {
-    .col-md-4 {
+    .col-md-3 {
+        margin-top: 5%;
         margin-bottom: 5%;
     }
 

@@ -7,32 +7,39 @@ function validateForm () {
     let valid = true;
 
     const hoursInput = document.getElementById('hours');
-    const workAreaInput = document.getElementById('work-area');
     const hoursInputError = hoursInput.nextElementSibling;
     // check for no input, negative input, or a non-number input
     if(hoursInput.value === "" || +hoursInput.value < 0 || isNaN(hoursInput.value)) {
-        hoursInputError.textContent = "Please enter a positive number";
+        hoursInputError.textContent = "Please enter your hours for the day as a positive number <24 with no leading zeroes (ex: 8)";
         hoursInput.focus();
         if(valid) valid = false;
     }
-    else {
+    else
         hoursInputError.textContent = "";
-    }
 
     const datalist = document.querySelector('datalist');
     const optionValues = [...datalist.children].map(option => option.value.toLowerCase());
+    const workAreaInput = document.getElementById('work-area');
     const workAreaError = datalist.nextElementSibling;
     // check for no input or an input that is not on the list of work areas
     if(workAreaInput.value === "" || !optionValues.includes(workAreaInput.value.toLowerCase())) {
-        workAreaError.textContent = "Please pick a valid work area";
+        workAreaError.textContent = "Please pick a work area from the list";
         if(valid) {
             workAreaInput.focus(); // only focus if previous input was valid and this one is not
             valid = false;
         }
     }
-    else {
+    else
         workAreaError.textContent = "";
+
+    const dateInput = document.getElementById('date');
+    const dateInputError = dateInput.nextElementSibling;
+    if(dateInput.value === "") {
+        $date_msg = "Please enter the date that you worked these hours";
+        if($valid) $valid = false;
     }
+    else
+        dateInputError.textContent = "";
 
     return valid;
 }
@@ -42,14 +49,5 @@ function validateForm () {
     const submit = document.getElementById('submit');
     submit.addEventListener('click', (e) => {
         let valid = validateForm();
-        const buffer = document.querySelector('.buffer');
-        if(valid) { // if form inputs are valid
-            document.querySelector('form').reset(); // clear form inputs
-            buffer.textContent = "Successfully submitted!";
-        }
-        else {
-            buffer.textContent = "";
-        }
-        e.preventDefault(); // TODO: Submit form when valid
     }, false);
 })();
