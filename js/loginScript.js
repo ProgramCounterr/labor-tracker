@@ -49,8 +49,6 @@ function validateForm () {
     const submit = document.querySelector('[type="submit"');
     submit.addEventListener('click', (e) => {
         let valid = validateForm();
-        if(!valid)
-            e.preventDefault(); // prevent form from submitting if not valid
     }, false);
 
 })();
