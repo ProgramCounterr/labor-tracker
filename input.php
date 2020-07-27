@@ -20,6 +20,7 @@
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
 
+	<!--Save last input as cookie -->
 	<!--checks to see if the user is logged in-->
 	<?php
 	session_start();
@@ -28,32 +29,26 @@
 	?>
 
     <body>
-        <header>
-            <nav>
-				<a href="#"id="logo"><img src="images/logo.png" alt="Twin Oaks Leaves"></a>
-                <a href="profile.html" id="site-name">Twin Oaks</a>
-                <ul class="nav">
-                    <li><a href="input.html"><i class="fas fa-clock"></i>Input labor</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
-                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php include('header.html'); ?>
 
-        <div class="buffer"></div>
+        <div class="buffer"><?php include('inputFormHandler.php'); ?></div>
 
         <div class="container">
-            <form action="#">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="hours">Hours worked:</label>
-                        <input id="hours" type="text" name="hours" autofocus/>
-                        <span class="alert-danger"></span>
+                        <input id="hours" type="number" name="hours"
+                            value="<?php if (isset($_POST['hours']) && !$confirm) echo $_POST['hours']; ?>"
+                            <?php if (empty($_POST['hours'])) { ?> autofocus <?php }; ?> autofocus />
+                        <span class="alert-danger"><?= $hours_msg; ?></span>
                     </div>
 
-                    <div class="col-md-4">
-                        <label for="searchbar">Search for work area:</label>
-                        <input type="text" list="work-areas" name="work-area" id="work-area">
+                    <div class="col-md-3">
+                        <label for="work-area">Search for work area:</label>
+                        <input type="text" list="work-areas" name="work-area" id="work-area"
+                            value="<?php if(isset($_POST['work-area']) && !$confirm) echo $_POST['work-area'] ?>"
+                            <?php if(empty($_POST['work-area'])) { ?> autofocus <?php }; ?> />
                         <datalist id="work-areas">
                             <option value="Curds"></option>
                             <option value="Garden"></option>
@@ -65,16 +60,22 @@
                             <option value="Seeds"></option>
                             <option value="Tofu Hut"></option>
                             <option value="Trays"></option>
-                        </datalist> 
-                        <span class="alert-danger"></span>
+                        </datalist>
+                        <span class="alert-danger"><?= $workArea_msg; ?></span>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <label for="date">Enter date worked:</label>
+                        <input type="date" name="date" id="date" />
+                        <span class="alert-danger"><?= $date_msg; ?></span>
+                    </div>
+
+                    <div class="col-md-1">
                         <input type="submit" class="btn btn-primary btn-lg" id="submit" value="Submit"/>
                     </div>
-
                 </div>
             </form>
+
         </div>
         <script src="js/inputScript.js"></script>
 		
@@ -129,33 +130,6 @@
 			}
 		}
 	}
-
-/*
-function createTable(){
- 
-	//connect to the database
-	require('connect-db.php');
-	
-	//write query
-	$query = "CREATE TABLE course(
-				course_ID VARCHAR(8) PRIMARY KEY,
-				course_desc VARCHAR(255) NOT NULL )";
-				
-	//prepare the query, get statement instance
-	$statement = $db->prepare($query);
-	
-	//run the query
-	$statement->execute();
-	
-	//release this cursor. Make it so db variable can be used by others
-	$statement->closeCursor();
-
-
-//close bracket from the "if" from before
-}
-else{   // not logged in yet
-	header('Location: login.php');  // redirect to the login page
-}*/
 ?>
 		
     </body>

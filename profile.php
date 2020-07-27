@@ -17,7 +17,7 @@
         <!-- Font awesome is used for the icons (<i> elements) and requires this line-->
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
- 
+
 <!--checks to see if the user is logged in-->
 <?php
 session_start();
@@ -26,17 +26,7 @@ if (isset($_SESSION['user']))
 ?>
  
     <body>
-        <header>
-            <nav> 
-				<a href="#"id="logo"><img src="images/logo.png" alt="Twin Oaks Leaves"></a>
-                <a href="#" id="site-name"> Twin Oaks</a>
-                <ul class="nav">
-                    <li><a href="input.html"><i class="fas fa-clock"></i>Input labor</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
-                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php include('header.html'); ?>
 		
 		
 		<div id="chart"></div>
