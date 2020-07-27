@@ -19,10 +19,19 @@
         <!-- Font awesome is used for the icons (<i> elements) and requires this line-->
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
+    <!--Save last input as cookie -->
+<!--checks to see if the user is logged in-->
+<?php
+session_start();
+if (isset($_SESSION['user']))
+{
+?>
 
     <body>
         <?php include('header.html'); ?>
+
         <div class="buffer"><?php include('inputFormHandler.php'); ?></div>
+
         <div class="container">
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                 <div class="row">
@@ -67,6 +76,15 @@
             </form>
 
         </div>
-        <!--<script src="js/inputScript.js"></script>-->
+        <script src="js/inputScript.js"></script>
+		
+<?php
+// close bracket from the "if" from before
+}
+else{   // not logged in yet
+	header('Location: login.php');  // redirect to the login page
+}
+?>
+		
     </body>
 </html>
