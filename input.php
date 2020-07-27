@@ -80,6 +80,10 @@ if (isset($_SESSION['user']))
         <script src="js/inputScript.js"></script>
 
 		<?php
+		
+		
+		
+		
 		//Make a table of all the work areas and populate it (if they don't exist already)
 		$work_areas = array(["Curds", 1000],
 						["curds", 1000],
@@ -95,6 +99,8 @@ if (isset($_SESSION['user']))
 					);
 
 		require('model/connect-db.php');
+		
+		
 		$query = "SELECT * FROM `work_areas`";
 		$statement = $db->prepare($query);
 		$statement->execute();	

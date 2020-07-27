@@ -24,7 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
 		
 	</head>
-<!--poop -->
+
 <?php
 session_start();
 if (isset($_SESSION['user']))
