@@ -19,7 +19,7 @@
         <!-- Font awesome is used for the icons (<i> elements) and requires this line-->
         <script src="https://kit.fontawesome.com/245f30a0ca.js" crossorigin="anonymous"></script>
     </head>
-    <!--Save last input as cookie -->
+
 <!--checks to see if the user is logged in-->
 <?php
 session_start();
@@ -33,21 +33,22 @@ if (isset($_SESSION['user']))
         <div class="buffer"><?php include('inputFormHandler.php'); ?></div>
 
         <div class="container">
-            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+            <!-- TODO: fix automatic error messages before first form submission -->
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="hours">Hours worked:</label>
                         <input id="hours" type="number" name="hours"
-                            value="<?php if (isset($_POST['hours']) && !$confirm) echo $_POST['hours']; ?>"
-                            <?php if (empty($_POST['hours'])) { ?> autofocus <?php }; ?> autofocus />
+                            value="<?php if (isset($_GET['hours']) && !$confirm) echo $_GET['hours']; ?>"
+                            <?php if (empty($_GET['hours'])) { ?> autofocus <?php }; ?> autofocus />
                         <span class="alert-danger"><?= $hours_msg; ?></span>
                     </div>
 
                     <div class="col-md-3">
                         <label for="work-area">Search for work area:</label>
                         <input type="text" list="work-areas" name="work-area" id="work-area"
-                            value="<?php if(isset($_POST['work-area']) && !$confirm) echo $_POST['work-area'] ?>"
-                            <?php if(empty($_POST['work-area'])) { ?> autofocus <?php }; ?> />
+                            value="<?php if(isset($_GET['work-area']) && !$confirm) echo $_GET['work-area'] ?>"
+                            <?php if(empty($_GET['work-area'])) { ?> autofocus <?php }; ?> />
                         <datalist id="work-areas">
                             <option value="Curds"></option>
                             <option value="Garden"></option>
@@ -74,7 +75,7 @@ if (isset($_SESSION['user']))
                     </div>
                 </div>
             </form>
-
+            <!-- TODO: Save last input as cookie and display -->
         </div>
         <script src="js/inputScript.js"></script>
 		
