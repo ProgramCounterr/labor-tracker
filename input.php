@@ -30,7 +30,7 @@ if (isset($_SESSION['user']))
     <body>
         <?php include('header.html'); ?>
 
-        <div class="buffer"><?php include('inputFormHandler.php'); ?></div>
+        <div class="buffer"><?php include('formHandlers/inputFormHandler.php'); ?></div>
 
         <div class="container">
             <!-- TODO: fix automatic error messages before first form submission -->
@@ -78,7 +78,7 @@ if (isset($_SESSION['user']))
             <!-- TODO: Save last input as cookie and display -->
         </div>
         <script src="js/inputScript.js"></script>
-		
+
 		<?php
 		//Make a table of all the work areas and populate it (if they don't exist already)
 		$work_areas = array(["Curds", 1000],
