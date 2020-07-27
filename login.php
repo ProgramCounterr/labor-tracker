@@ -27,8 +27,7 @@
 		<div class="container">
 		
 			<h2>Log in</h2>
-			<!-- TODO: add backend stuff (add method="post", action, etc.) -->
-			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" name="mainform"> 
+			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="mainform"> 
 				<div class="form-group">
 					<label for="username">Username: </label>
 					<input type="text" id="username" class="form-control" placeholder="Enter Username" name="username"/>
@@ -63,10 +62,10 @@
 		<?php
 		require('model/connect-db.php');
 		//The isset makes sure that there is something in the text fields
-		if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['username']) && isset($_GET['password'])){			
+		if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['username']) && isset($_POST['password'])){			
 			
-			$user = trim($_GET['username']);
-			$pwd = trim($_GET['password']);
+			$user = trim($_POST['username']);
+			$pwd = trim($_POST['password']);
 			
 			//:user and :pwd are bound to the variables down below
 			$query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
@@ -93,11 +92,11 @@
 				//starts a session object
 				session_start();
 				$_SESSION['user'] = $user;
-				//we should change this so it stores an encoding of the password later.
+				//TODO: change this so it stores an encoding of the password later.
 				//something like, $_SESSION['pwd'] = md5($pwd);
 				$_SESSION['pwd'] = $pwd;
 				//branches to other page
-				header('Location: profile.html');
+				header('Location: profile.php');
 			}
 	
 			$statement->closeCursor();
