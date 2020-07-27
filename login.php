@@ -27,6 +27,7 @@
 		<div class="container">
 		
 			<h2>Log in</h2>
+
 			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="mainform"> 
 				<div class="form-group">
 					<label for="username">Username: </label>
@@ -44,10 +45,10 @@
 					</div>
 					<span class="alert-danger" id="msg_password"></span>
 				</div>
-				<!-- TODO: add 'Remember me' functionality -->
+				
 				<div class="form-group">
 					<div class="checkbox">
-						<label><input type="checkbox"> Remember me</label>
+						<label><input type="checkbox" name="remember" value="1"> Remember me</label>
 					</div>
 				</div>
 
@@ -55,55 +56,9 @@
 			</form>
 
 		</div>
-		
 
 		<script src="js/loginScript.js"></script>
 		
-		<?php
-		require('model/connect-db.php');
-		//The isset makes sure that there is something in the text fields
-		if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['username']) && isset($_POST['password'])){			
-			
-			$user = trim($_POST['username']);
-			$pwd = trim($_POST['password']);
-			
-			//:user and :pwd are bound to the variables down below
-			$query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
-
-			$statement = $db->prepare($query);
-
-			$statement->bindValue(':user', $user);
-			$statement->bindValue(':pwd', $pwd);
-	
-			
-			$statement->execute();
-			
-			$result = $statement->fetch();
-			
-			//This is the case where the username/password is incorrect
-			if (!$result){
-				echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
-				$statement->closeCursor();
-				exit;
-			}
-			//if the statement is correctly fetched, then it goes to the profile page
-			else{
-				$statement->closeCursor();
-				//starts a session object
-				session_start();
-				$_SESSION['user'] = $user;
-				//TODO: change this so it stores an encoding of the password later.
-				//something like, $_SESSION['pwd'] = md5($pwd);
-				$_SESSION['pwd'] = $pwd;
-				//branches to other page
-				header('Location: profile.php');
-			}
-	
-			$statement->closeCursor();
-			
-		}
-		?>
-		
-		
+		<?php include('formHandlers/loginFormHandler.php'); ?>
 	</body>
 </html>
