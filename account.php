@@ -32,24 +32,15 @@ if (isset($_SESSION['user']))
 ?>
 
 	<body>
-	    <header>
-            <nav> 
-				<a href="#"id="logo"><img src="images/logo.png" alt="Twin Oaks Leaves"></a>
-                <a href="#" id="site-name"> Twin Oaks</a>
-                <ul class="nav">
-                    <li><a href="input.html"><i class="fas fa-clock"></i>Input labor</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
-                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
-                </ul>
-            </nav>
-        </header>
+		<?php include('header.html'); ?>
+		
 		<div class="container">
 		
 			<h2>Change Username and Password</h2>
 			<div class="container">
 				<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-				Name: <input type="text" name="username" class="form-control" placeholder="New Username" autofocus required /> <br/>
-				Password: <input type="password" name="password" class="form-control" placeholder="New Password" required /> <br/>
+				New Username: <input type="text" name="username" class="form-control" placeholder="New Username" autofocus required /> <br/>
+				New Password: <input type="password" name="password" class="form-control" placeholder="New Password" required /> <br/>
 				<input type="submit" value="Update" class="btn btn-light"  />   
 				</form>
 			</div>
@@ -69,7 +60,7 @@ if (isset($_SESSION['user']))
 		
 		if ($_SERVER['REQUEST_METHOD'] == "POST"){
 			
-			//We might want to do put some validation stuff here.
+			//TODO: php form validation
 			
 			$oldUser = $_SESSION['user'];
 			$oldPwd = $_SESSION['pwd'];
@@ -97,9 +88,18 @@ if (isset($_SESSION['user']))
 				exit;
 			}
 			else{
-				echo "<div style='text-align: center;' class='bg-success text-white'>Success! Your new username is " . $newUser . "</div>";
+				echo "<div style='text-align: center;' class='bg-success text-white'>Success! $newUser, your username and password have been updated! </div>";
+				//update session variable
+				$_SESSION['user'] = $newUser;
+				$_SESSION['pwd'] = $newPwd;
+
+				//update cookies, if any
+				if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+					setcookie('username', $newUser, time() + 86400);
+					setcookie('password', $newPwd, time() + 86400);
+				}
 			}
-	
+		
 			$statement->closeCursor();
 			
 			
