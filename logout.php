@@ -1,3 +1,4 @@
+<!-- Author: Peter Chen -->
 <?php session_start(); // join session ?>
 
 <?php

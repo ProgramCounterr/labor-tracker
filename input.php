@@ -45,7 +45,7 @@ if (isset($_SESSION['user']))
                     </div>
 
                     <div class="col-md-3">
-                        <label for="work-area">Search for work area:</label>
+                        <label for="work-area">Work area:</label>
                         <input type="text" list="work-areas" name="work-area" id="work-area"
                             value="<?php if(isset($_GET['work-area']) && !$confirm) echo $_GET['work-area'] ?>"
                             <?php if(empty($_GET['work-area'])) { ?> autofocus <?php }; ?> />
@@ -65,7 +65,7 @@ if (isset($_SESSION['user']))
                     </div>
 
                     <div class="col-md-3">
-                        <label for="date">Enter date worked:</label>
+                        <label for="date">Day of work:</label>
                         <input type="date" name="date" id="date" />
                         <span class="alert-danger"><?= $date_msg; ?></span>
                     </div>
@@ -78,6 +78,15 @@ if (isset($_SESSION['user']))
             <!-- TODO: Save last input as cookie and display -->
         </div>
         <script src="js/inputScript.js"></script>
+        
+        <?php
+        //close bracket from the "if" from before
+        }
+        else {   // not logged in yet
+            header('Location: login.php');  // redirect to the login page
+        }
+        ?>
+
 
 		<?php
 		
@@ -137,6 +146,6 @@ if (isset($_SESSION['user']))
 		}
 	}
 ?>
-		
+
     </body>
 </html>
