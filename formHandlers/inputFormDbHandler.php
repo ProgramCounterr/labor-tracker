@@ -28,7 +28,8 @@
         }
 
         // insert record into 'inputs' table 
-        //(which should have a primary key id that auto-increments and foreign key 'Work Area')
+        // (which should have a primary key id that auto-increments and foreign keys `Username` and 'Work Area'
+        // that should have ON DELETE CASCADE and ON UPDATE CASCADE constraints)
         $query = "INSERT INTO `inputs`(`Username`, `Work Area`, `Hours`, `Date`) VALUES (:user, :workArea, :hours, :date)";
         $statement = $db->prepare($query);
         $statement->bindValue(':user', $_SESSION['user']);
