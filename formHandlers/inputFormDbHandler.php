@@ -14,8 +14,8 @@
             exit;
         }
 
-        // update 'Total labor' column of 'users' table with columns 'Username' (Primary Key), 'Password', and 'Total labor'
-        $query = "UPDATE `users` SET `Total labor`=`Total labor`+:hours WHERE `Username`=:user";
+        // update 'labor_balance' column of 'users' table with columns 'Username' (Primary Key), 'Password', and 'labor_balance'
+        $query = "UPDATE `users` SET `labor_balance`=`labor_balance`+:hours WHERE `Username`=:user";
         $statement = $db->prepare($query);
         $statement->bindValue(':hours', $hours);
         $statement->bindValue(':user', $_SESSION['user']);
