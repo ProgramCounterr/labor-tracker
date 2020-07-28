@@ -9,7 +9,7 @@
         $laborBalance = intval($statement->fetchAll()[0]["labor_balance"]); 
 
         if($laborBalance - $hours < 0) {
-            echo "Insufficient hours in labor balance of this work area";
+            echo "<p style='color:red;'> Insufficient hours in labor balance of this work area </p>";
             $statement->closeCursor();
             exit;
         }
