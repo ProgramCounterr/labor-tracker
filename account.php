@@ -24,7 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
 		
 	</head>
-<!--poop -->
+
 <?php
 session_start();
 if (isset($_SESSION['user']))
@@ -60,15 +60,26 @@ if (isset($_SESSION['user']))
 		
 		if ($_SERVER['REQUEST_METHOD'] == "POST"){
 			
-			//TODO: php form validation
-			
-			$oldUser = $_SESSION['user'];
-			$oldPwd = $_SESSION['pwd'];
-			
 			$newUser = trim($_POST['username']);
 			$newPwd = trim($_POST['password']);
 			
-			$query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
+			//check if user's name is unique
+			$query = "SELECT * FROM `users` WHERE `username`=:user";
+			$statement = $db->prepare($query);
+			$statement->bindValue(':user', $newUser);
+			
+			$statement->execute();	
+			$result = $statement->fetch();
+			if ($result){
+				echo "<div style='text-align: center;' class='bg-danger text-white'>The username is already in use. Please choose another</div>";
+				$statement->closeCursor();
+				exit;
+			}
+			$statement->closeCursor();
+			
+			
+			$oldUser = $_SESSION['user'];
+			$oldPwd = $_SESSION['pwd'];
 			
 			$query = "UPDATE `users` SET `username`=:nUser, `password`=:nPwd WHERE `username`=:oUser AND `password`=:oPwd";
 	
@@ -101,7 +112,6 @@ if (isset($_SESSION['user']))
 			}
 		
 			$statement->closeCursor();
-			
 			
 		}
 		?>
