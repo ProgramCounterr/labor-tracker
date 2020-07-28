@@ -35,14 +35,14 @@ if (isset($_SESSION['user']))
         <div class="buffer"><?php include('formHandlers/inputFormHandler.php'); ?></div>
 
         <div class="container">
-            <!-- TODO: fix automatic error messages before first form submission -->
+
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
                 <div class="row">
                     <div class="col-md-3">
                         <label for="hours">Hours worked:</label>
                         <input id="hours" type="number" name="hours"
-                            value="<?php if (isset($_GET['hours']) && !$confirm) echo $_GET['hours']; ?>"
-                            <?php if (empty($_GET['hours'])) { ?> autofocus <?php }; ?> autofocus />
+                            value="<?php if (isset($_GET['hours']) && !$confirm) echo $_GET['hours']; ?>" 
+                            <?php if(empty($_GET['hours'])) { ?> autofocus <?php }; ?>/>
                         <span class="alert-danger"><?= $hours_msg; ?></span>
                     </div>
 
@@ -68,7 +68,8 @@ if (isset($_SESSION['user']))
 
                     <div class="col-md-3">
                         <label for="date">Day of work:</label>
-                        <input type="date" name="date" id="date" />
+                        <input type="date" name="date" id="date"
+                            value="<?php if(isset($_GET['date']) && !$confirm) echo $_GET['date'] ?>"/>
                         <span class="alert-danger"><?= $date_msg; ?></span>
                     </div>
 
@@ -77,8 +78,51 @@ if (isset($_SESSION['user']))
                     </div>
                 </div>
             </form>
-            <div class="database"><?php include('formHandlers/inputFormDbHandler.php'); ?></div>
-            <!-- TODO: add table of recent inputs using PHP -->
+            
+            <h2 class="submissions">Recent submissions:</h2>
+            <table class="submissions">
+                <thead>
+                    <tr>
+                        <th><b>Work area</b></th>
+                        <th><b>Hours</b></th>
+                        <th><b>Date</b></th>
+                    </tr>
+                </thead>
+
+                <div class="database"><?php include('formHandlers/inputFormDbHandler.php'); ?></div>
+
+                <tbody>
+                    <?php
+                        ob_start(); // start tracking outputs (echo statements)
+                        function makeInputsTable() {
+                            include('model/connect-db.php');
+                            $query = "SELECT `Work Area`, `Hours`, `Date` FROM `inputs` ORDER BY `Id` DESC LIMIT 5";
+                            $statement = $db->prepare($query);
+                            $statement->execute();
+                            $results = $statement->fetchAll();
+                            $statement->closeCursor();
+
+                            if(!$results) echo "No recent inputs";
+                            else {
+                                foreach($results as $record) {
+                                    echo "<tr>";
+                                    echo "<td>" . $record['Work Area'] . "</td>";
+                                    echo "<td>" . $record['Hours'] . "</td>";
+                                    echo "<td>" . $record['Date'] . "</td>";
+                                    echo "</tr>";
+                                }
+                            }
+                        }
+                        makeInputsTable(); // initial invocation
+                        // update table every time user submits
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hours'])) {
+                            ob_end_clean(); // clear echo statements since ob_start()
+                            makeInputsTable();
+                        }
+                    ?>
+                </tbody>
+            </table>
+                
         </div>
         <script src="js/inputScript.js"></script>
         
