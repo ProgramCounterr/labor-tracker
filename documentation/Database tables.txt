@@ -3,9 +3,9 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 
 `users` table: table containing each user's credentials and his/her total work hours
 
-	3 columns: `Username` varchar(64), `Password` varchar(64), and `Total labor` int(11)
+	3 columns: `username` varchar(64), `password` varchar(64), and `labor_balance` int(11)
 
-	`Username` column is the PRIMARY KEY and has the attributes NOT NULL and BINARY
+	`username` column is the PRIMARY KEY and has the attributes NOT NULL and BINARY
 
 	Sample data:
 		"Username", "password", 0
@@ -13,17 +13,17 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 
 `inputs` table: table containing all work hours submissions
 	
-	5 columns: `Id` int(20), `Username` varchar(64), `Work Area` varchar(255), `Hours` int(11), and `Date` date
+	5 columns: `id` int(20), `username` varchar(64), `area_name` varchar(255), `hours` int(11), and `date` date
 
-	`Id` column is the PRIMARY KEY and has attributes NOT NULL and AUTO_INCREMENT
+	`id` column is the PRIMARY KEY and has attributes NOT NULL and AUTO_INCREMENT
 
-	`Username` has a FOREIGN KEY constraint that references `users`(`Username`)
+	`username` has a FOREIGN KEY constraint that references `users`(`username`)
 
-	`Username` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
+	`username` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
 
-	`Work Area` has a FOREIGN KEY constraint that references `work_areas`(`area_name`)
+	`area_name` has a FOREIGN KEY constraint that references `work_areas`(`area_name`)
 
-	`Work Area` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
+	`area_name` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
 
 	Sample data:
 		24, "username", "Trays", 4, "2020-07-27"
