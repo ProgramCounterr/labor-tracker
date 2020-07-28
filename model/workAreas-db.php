@@ -46,6 +46,7 @@ function initWorkAreasDb() {
             $r = $state->execute();
         }
     }
+    $statement->closeCursor();
 }
 initWorkAreasDb();
 ?>
