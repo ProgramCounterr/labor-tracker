@@ -38,7 +38,7 @@ if (isset($_SESSION['user']))
 		
 			<h2>Change Username and Password</h2>
 			<div class="container">
-				<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+				<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 				New Username: <input type="text" name="username" class="form-control" placeholder="New Username" autofocus required /> <br/>
 				New Password: <input type="password" name="password" class="form-control" placeholder="New Password" required /> <br/>
 				<input type="submit" value="Update" class="btn btn-light"  />   
@@ -47,7 +47,6 @@ if (isset($_SESSION['user']))
 
 		</div>
 		
-				
 		<?php
 		
 		//close bracket from the "if" from before
@@ -63,7 +62,7 @@ if (isset($_SESSION['user']))
 			$newUser = trim($_POST['username']);
 			$newPwd = trim($_POST['password']);
 			
-			//check if user's name is unique
+			//check if username is unique
 			$query = "SELECT * FROM `users` WHERE `username`=:user";
 			$statement = $db->prepare($query);
 			$statement->bindValue(':user', $newUser);
@@ -74,9 +73,7 @@ if (isset($_SESSION['user']))
 				echo "<div style='text-align: center;' class='bg-danger text-white'>The username is already in use. Please choose another</div>";
 				$statement->closeCursor();
 				exit;
-			}
-			$statement->closeCursor();
-			
+			}			
 			
 			$oldUser = $_SESSION['user'];
 			$oldPwd = $_SESSION['pwd'];
@@ -112,10 +109,8 @@ if (isset($_SESSION['user']))
 			}
 		
 			$statement->closeCursor();
-			
 		}
 		?>
-		
 		
 	</body>
 </html>
