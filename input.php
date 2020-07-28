@@ -89,8 +89,6 @@ if (isset($_SESSION['user']))
                     </tr>
                 </thead>
 
-
-
                 <tbody>
                     <?php
                         ob_start(); // start tracking outputs (echo statements)
