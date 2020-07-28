@@ -27,7 +27,7 @@
             exit;
         }
 
-        // insert record into 'inputs' table
+        // insert record into 'inputs' table (which should have a primary key id that auto-increments)
         $query = "INSERT INTO `inputs`(`Username`, `Work Area`, `Hours`, `Date`) VALUES (:user, :workArea, :hours, :date)";
         $statement = $db->prepare($query);
         $statement->bindValue(':user', $_SESSION['user']);
@@ -53,8 +53,6 @@
             $statement->closeCursor();
             exit;
         }
-        else
-            echo "Successfully submitted " . intval($hours) . " hours at the $workArea for $date!";
 
         $statement->closeCursor();
     }
