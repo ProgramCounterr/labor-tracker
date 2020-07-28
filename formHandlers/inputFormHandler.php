@@ -41,7 +41,7 @@ $confirm = validateForm();
     if ($confirm) {
         include('model/connect-db.php');
         // update 'Total labor' column of 'users' table with columns 'Username', 'Password', and 'Total labor'
-        $query = "UPDATE `users` SET `Total labor`=`Total labor`+:hours WHERE `Username`=:user";
+        $query = "UPDATE `users` SET `labor_balance`=`labor_balance`+:hours WHERE `Username`=:user";
         $statement = $db->prepare($query);
         $statement->bindValue(':hours', $hours);
         $statement->bindValue(':user', $_SESSION['user']);
