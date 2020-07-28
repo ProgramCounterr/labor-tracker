@@ -24,7 +24,7 @@ function initWorkAreasDb() {
             $query = "CREATE TABLE work_areas(
             area_name VARCHAR(255) PRIMARY KEY,
             labor_balance INT NOT NULL,
-            CHECK (labor_balance>0)
+            CHECK (labor_balance>=0)
             )";
             $statement = $db->prepare($query);
             $statement->execute();
