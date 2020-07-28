@@ -11,7 +11,7 @@ function validateForm () {
     const usernameError = username.nextElementSibling;
     // TODO: check for registered username
     if(usernameInput.value === "") {
-        usernameError.textContent = "Invalid username";
+        usernameError.textContent = "Missing username";
         usernameInput.focus();
         if(valid) valid = false;
     }
@@ -21,7 +21,7 @@ function validateForm () {
     const passwordError = document.getElementById('msg_password');
     // TODO: check for registered password
     if(passwordInput.value === "") {
-        passwordError.textContent = "Invalid password";
+        passwordError.textContent = "Missing password";
         if(valid) {
             passwordInput.focus(); // only focus if previous input was valid and this one is not
             valid = false;
@@ -49,8 +49,7 @@ function validateForm () {
     const submit = document.querySelector('[type="submit"');
     submit.addEventListener('click', (e) => {
         let valid = validateForm();
-        if(!valid)
-            e.preventDefault(); // prevent form from submitting if not valid
+        if(!valid) e.preventDefault();
     }, false);
 
 })();

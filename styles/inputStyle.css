@@ -30,6 +30,23 @@ input#work-area {
     max-width: 300px;
 }
 
+.database {
+    color: red;
+}
+
+h2.submissions {
+    margin-top: 5%;
+}
+
+table {
+    min-width: 400px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
 /*--- adjust to make the page look better on small screens ---*/
 @media only screen and (max-width: 768px) {
     .col-md-3 {
@@ -39,6 +56,10 @@ input#work-area {
 
     input#work-area {
         max-width: 70%; 
+    }
+
+    table {
+        margin-bottom: 5%;
     }
 }
 

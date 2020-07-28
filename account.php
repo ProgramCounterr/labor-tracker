@@ -20,45 +20,42 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+		
 	</head>
 
-	<body class="pathimage">
-		<div class="overlay"></div>
+<?php
+session_start();
+if (isset($_SESSION['user']))
+{
+?>
+
+	<body>
+		<?php include('header.html'); ?>
+		
 		<div class="container">
 		
-			<h2>Log in</h2>
-
-			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="mainform"> 
-				<div class="form-group">
-					<label for="username">Username: </label>
-					<input type="text" id="username" class="form-control" placeholder="Enter Username" name="username"/>
-					<span class="alert-danger" id="msg_username"></span>
-				</div>
-
-				<div class="form-group">
-					<label for="password">Password: </label>
-					<div class="input-group mb-2">
-						<input type="password" id="password" class="form-control" placeholder="Enter Password" name="password"/>
-						<div class="input-group-append">
-							<span class="input-group-text"><i class="fa fa-eye"></i></span>
-						</div>
-					</div>
-					<span class="alert-danger" id="msg_password"></span>
-				</div>
-				
-				<div class="form-group">
-					<div class="checkbox">
-						<label><input type="checkbox" name="remember" value="1"> Remember me</label>
-					</div>
-				</div>
-
-				<input type="submit" value="Log in" class="btn btn-dark" />         
-			</form>
+			<h2>Change Username and Password</h2>
+			<div class="container">
+				<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+				New Username: <input type="text" name="username" class="form-control" placeholder="New Username" autofocus required /> <br/>
+				New Password: <input type="password" name="password" class="form-control" placeholder="New Password" required /> <br/>
+				<input type="submit" value="Update" class="btn btn-light"  />   
+				</form>
+			</div>
 
 		</div>
-
-		<script src="js/loginScript.js"></script>
 		
-		<?php include('formHandlers/loginFormHandler.php'); ?>
+		<?php
+		include('formHandlers/accountFormHandler.php');
+		//close bracket from the "if" from before
+		}
+		else{   // not logged in yet
+			header('Location: login.php');  // redirect to the login page
+		}
+		
+		?>
+		
 	</body>
 </html>

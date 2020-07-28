@@ -27,15 +27,39 @@ if (isset($_SESSION['user']))
  
     <body>
         <?php include('header.html'); ?>
-		
-		
+        
+        <div class="welcome">
+            <h2><?= "Welcome, " . $_SESSION['user'] . "!"; ?></h2>
+        </div>
+				
 		<div id="chart"></div>
+		<p id="total-hours">
+			<?php
+				require('model/connect-db.php');
+				
+				$user = trim($_SESSION['user']);
+				
+				$query = "SELECT * FROM `users` WHERE `username`=:user ";
 
-		<div class="form-group">
-			<div class="checkbox">
-				<label><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>
-			</div>
-		</div>
+				$statement = $db->prepare($query);
+
+				$statement->bindValue(':user', $user);
+	
+				$statement->execute();
+				$result = $statement->fetch();
+
+				if (!$result){
+					//just for production. Don't let user know what table names are
+					print_r($statement->errorInfo());
+					$statement->closeCursor();
+					exit;
+				}
+
+				//display stuff on screen
+				echo "<b>You have worked:</b> " . $result['Total labor'] . " hours";
+			?>
+		</p>
+        <label class="checkbox"><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script src="js/profileScript.js"></script>
@@ -48,6 +72,5 @@ else{   // not logged in yet
 }
 ?>
 
-		
 	</body>
 </html>

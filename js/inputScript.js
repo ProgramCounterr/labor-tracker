@@ -9,10 +9,10 @@ function validateForm () {
     const hoursInput = document.getElementById('hours');
     const hoursInputError = hoursInput.nextElementSibling;
     // check for no input, negative input, or a non-number input
-    if(hoursInput.value === "" || +hoursInput.value < 0 || isNaN(hoursInput.value)) {
+    if(hoursInput.value === "" || +hoursInput.value < 0 || +hoursInput.value > 24 || isNaN(hoursInput.value)) {
         hoursInputError.textContent = "Please enter your hours for the day as a positive number <24 with no leading zeroes (ex: 8)";
         hoursInput.focus();
-        if(valid) valid = false;
+        valid = false;
     }
     else
         hoursInputError.textContent = "";
@@ -35,8 +35,8 @@ function validateForm () {
     const dateInput = document.getElementById('date');
     const dateInputError = dateInput.nextElementSibling;
     if(dateInput.value === "") {
-        $date_msg = "Please enter the date that you worked these hours";
-        if($valid) $valid = false;
+        dateInputError.textContent = "Please enter the date that you worked these hours";
+        valid = false;
     }
     else
         dateInputError.textContent = "";
