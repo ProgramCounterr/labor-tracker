@@ -14,8 +14,8 @@
             exit;
         }
 
-        // update 'Total labor' column of 'users' table with columns 'Username' (Primary Key), 'Password', and 'Total labor'
-        $query = "UPDATE `users` SET `Total labor`=`Total labor`+:hours WHERE `Username`=:user";
+        // update 'labor_balance' column of 'users' table with columns 'Username' (Primary Key), 'Password', and 'labor_balance'
+        $query = "UPDATE `users` SET `labor_balance`=`labor_balance`+:hours WHERE `username`=:user";
         $statement = $db->prepare($query);
         $statement->bindValue(':hours', $hours);
         $statement->bindValue(':user', $_SESSION['user']);
@@ -28,9 +28,9 @@
         }
 
         // insert record into 'inputs' table 
-        // (which should have a primary key id that auto-increments and foreign keys `Username` and 'Work Area'
+        // (which should have a primary key id that auto-increments and foreign keys `Username` and 'area_name'
         // that should have ON DELETE CASCADE and ON UPDATE CASCADE constraints)
-        $query = "INSERT INTO `inputs`(`Username`, `Work Area`, `Hours`, `Date`) VALUES (:user, :workArea, :hours, :date)";
+        $query = "INSERT INTO `inputs`(`username`, `area_name`, `hours`, `date`) VALUES (:user, :workArea, :hours, :date)";
         $statement = $db->prepare($query);
         $statement->bindValue(':user', $_SESSION['user']);
         $statement->bindValue(':workArea', $workArea);

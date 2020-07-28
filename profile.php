@@ -56,7 +56,7 @@ if (isset($_SESSION['user']))
 				}
 
 				//display stuff on screen
-				echo "<b>You have worked:</b> " . $result['Total labor'] . " hours";
+				echo "<b>You have worked:</b> " . $result['labor_balance'] . " hours";
 			?>
 		</p>
         <label class="checkbox"><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>

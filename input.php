@@ -94,7 +94,7 @@ if (isset($_SESSION['user']))
                         ob_start(); // start tracking outputs (echo statements)
                         function makeInputsTable() {
                             include('model/connect-db.php');
-                            $query = "SELECT `Work Area`, `Hours`, `Date` FROM `inputs` WHERE `Username`=:user ORDER BY `Id` DESC LIMIT 5";
+                            $query = "SELECT `area_name`, `hours`, `date` FROM `inputs` WHERE `username`=:user ORDER BY `id` DESC LIMIT 5";
                             $statement = $db->prepare($query);
                             $statement->bindValue(':user', $_SESSION['user']);
                             $statement->execute();
@@ -105,9 +105,9 @@ if (isset($_SESSION['user']))
                             else {
                                 foreach($results as $record) {
                                     echo "<tr>";
-                                    echo "<td>" . ucwords(strtolower($record['Work Area']), " ") . "</td>";
-                                    echo "<td>" . $record['Hours'] . "</td>";
-                                    echo "<td>" . $record['Date'] . "</td>";
+                                    echo "<td>" . ucwords(strtolower($record['area_name']), " ") . "</td>";
+                                    echo "<td>" . $record['hours'] . "</td>";
+                                    echo "<td>" . $record['date'] . "</td>";
                                     echo "</tr>";
                                 }
                             }
