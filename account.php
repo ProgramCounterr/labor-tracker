@@ -63,7 +63,7 @@ if (isset($_SESSION['user']))
 			$newPwd = trim($_POST['password']);
 			
 			//check if username is unique
-			$query = "SELECT * FROM `users` WHERE `username`=:user";
+			$query = "SELECT * FROM `users` WHERE BINARY `username`=:user";
 			$statement = $db->prepare($query);
 			$statement->bindValue(':user', $newUser);
 			
