@@ -1,0 +1,45 @@
+models/connect-db.php --> Use PDO to connect to a database; must update credentials to match local setup
+models/workAreas-db.php --> Script to create a table in the database for work areas, if one doesn't already exist
+
+`users` table: table containing each user's credentials and his/her total work hours
+
+	3 columns: `Username` varchar(64), `Password` varchar(64), and `labor_balance` int(11)
+
+	`Username` column is the PRIMARY KEY and has the attributes NOT NULL and BINARY
+
+	Sample data:
+		`Username`, `password`, 0
+		`username`, `password`, 2
+
+`inputs` table: table containing all work hours submissions
+	
+	5 columns: `Id` int(20), `Username` varchar(64), `Work Area` varchar(255), `Hours` int(11), and `Date` date
+
+	`Id` column is the PRIMARY KEY and has attributes NOT NULL and AUTO_INCREMENT
+
+	`Username` has a FOREIGN KEY constraint that references `users`(`Username`)
+
+	`Username` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
+
+	`Work Area` has a FOREIGN KEY constraint that references `work_areas`(`area_name`)
+
+	`Work Area` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
+
+	Sample data:
+		24, `username`, `Trays`, 4, `2020-07-27`
+
+		25, `Username`, `Hammocks`, 5, `2020-07-28`
+
+		26, `username`, `Kettle`, 1, `2020-07-29`
+
+CREATE TABLE inputs(
+    Id INT(20) PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(64),
+    `Work Area` VARCHAR(255),
+    `Hours` int(11),
+    `Date` DATE,
+    FOREIGN KEY(Username) REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`Work Area`) REFERENCES work_areas(area_name) ON DELETE CASCADE ON UPDATE CASCADE
+);	
+	
+
