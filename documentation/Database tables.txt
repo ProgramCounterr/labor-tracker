@@ -3,7 +3,7 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 
 `users` table: table containing each user's credentials and his/her total work hours
 
-	3 columns: `Username` varchar(64), `Password` varchar(64), and `Total labor` int(11)
+	3 columns: `Username` varchar(64), `Password` varchar(64), and `labor_balance` int(11)
 
 	`Username` column is the PRIMARY KEY and has the attributes NOT NULL and BINARY
 
