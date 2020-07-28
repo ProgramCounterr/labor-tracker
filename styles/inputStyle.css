@@ -30,6 +30,9 @@ input#work-area {
     max-width: 300px;
 }
 
+.database {
+    color: green;
+}
 /*--- adjust to make the page look better on small screens ---*/
 @media only screen and (max-width: 768px) {
     .col-md-3 {

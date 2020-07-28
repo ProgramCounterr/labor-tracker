@@ -77,7 +77,7 @@ if (isset($_SESSION['user']))
                     </div>
                 </div>
             </form>
-            
+            <div class="database"><?php include('formHandlers/inputFormDbHandler.php'); ?></div>
             <!-- TODO: add table of recent inputs using PHP -->
         </div>
         <script src="js/inputScript.js"></script>
