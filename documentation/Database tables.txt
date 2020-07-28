@@ -32,6 +32,14 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 
 		26, `username`, `Kettle`, 1, `2020-07-29`
 
-	
+CREATE TABLE inputs(
+    Id INT(20) PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(64),
+    `Work Area` VARCHAR(255),
+    `Hours` int(11),
+    `Date` DATE,
+    FOREIGN KEY(Username) REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`Work Area`) REFERENCES work_areas(area_name) ON DELETE CASCADE ON UPDATE CASCADE
+);	
 	
 
