@@ -8,8 +8,8 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 	`Username` column is the PRIMARY KEY and has the attributes NOT NULL and BINARY
 
 	Sample data:
-		`Username`, `password`, 0
-		`username`, `password`, 2
+		"Username", "password", 0
+		"username", "password", 2
 
 `inputs` table: table containing all work hours submissions
 	
@@ -26,11 +26,11 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 	`Work Area` has attributes ON DELETE CASCADE and ON UPDATE CASCADE
 
 	Sample data:
-		24, `username`, `Trays`, 4, `2020-07-27`
+		24, "username", "Trays", 4, "2020-07-27"
 
-		25, `Username`, `Hammocks`, 5, `2020-07-28`
+		25, "Username", "Hammocks", 5, "2020-07-28"
 
-		26, `username`, `Kettle`, 1, `2020-07-29`
+		26, "username", "Kettle", 1, "2020-07-29"
 
 	
 	
