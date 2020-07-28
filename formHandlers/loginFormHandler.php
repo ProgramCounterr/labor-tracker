@@ -4,7 +4,7 @@
     function authenticate($user, $pwd) {
         require('model/connect-db.php');
         // :user and :pwd are bound to the variables down below
-        $query = "SELECT * FROM `users` WHERE `username`=:user AND `password`=:pwd";
+        $query = "SELECT * FROM `users` WHERE BINARY `username`=:user AND BINARY `password`=:pwd";
 
         $statement = $db->prepare($query);
 
