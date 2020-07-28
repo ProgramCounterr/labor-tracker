@@ -35,12 +35,11 @@ input#work-area {
 }
 
 h2.submissions {
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 table {
     min-width: 400px;
-    margin-bottom: 5%;
 }
 
 table, th, td {
@@ -57,6 +56,10 @@ table, th, td {
 
     input#work-area {
         max-width: 70%; 
+    }
+
+    table {
+        margin-bottom: 5%;
     }
 }
 
