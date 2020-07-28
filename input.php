@@ -96,8 +96,9 @@ if (isset($_SESSION['user']))
                         ob_start(); // start tracking outputs (echo statements)
                         function makeInputsTable() {
                             include('model/connect-db.php');
-                            $query = "SELECT `Work Area`, `Hours`, `Date` FROM `inputs` ORDER BY `Id` DESC LIMIT 5";
+                            $query = "SELECT `Work Area`, `Hours`, `Date` FROM `inputs` WHERE `Username`=:user ORDER BY `Id` DESC LIMIT 5";
                             $statement = $db->prepare($query);
+                            $statement->bindValue(':user', $_SESSION['user']);
                             $statement->execute();
                             $results = $statement->fetchAll();
                             $statement->closeCursor();
