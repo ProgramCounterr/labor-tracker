@@ -140,11 +140,11 @@ if (isset($_SESSION['user']))
 	
 				$r = $state->execute();
 			}
+			//We should remove this (just for testing)
 			else{
 				echo "Yay! The work area exists! </br>";
 			}
 		}
-	}
 ?>
 
     </body>

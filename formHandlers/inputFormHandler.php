@@ -6,7 +6,7 @@ function validateForm() {
     global $hours, $workArea, $hours_msg, $workArea_msg, $date, $date_msg;
     $valid = true;
 
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {  
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['hours'])) {  
         if (empty($_GET['hours']) || $_GET['hours'] < 0 || $_GET['hours'] > 24 || !is_numeric($_GET['hours'])) {
             $hours_msg = "Please enter your hours for the day as a positive number <24 with no leading zeroes (ex: 8) <br />";
             if($valid) $valid = false;
