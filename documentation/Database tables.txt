@@ -15,7 +15,7 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 	
 	5 columns: `id` int(20), `username` varchar(64), `area_name` varchar(255), `hours` int(11), and `date` date
 
-	`id` column is the PRIMARY KEY and has attributes NOT NULL and AUTO_INCREMENT
+	`id` column is the PRIMARY KEY and has the attribute AUTO_INCREMENT
 
 	`username` has a FOREIGN KEY constraint that references `users`(`username`)
 
@@ -32,6 +32,14 @@ models/workAreas-db.php --> Script to create a table in the database for work ar
 
 		3, "username", "Kettle", 1, "2020-07-29"
 
-	
+CREATE TABLE `inputs`(
+    id INT(20) PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(64),
+    `area_name` VARCHAR(255),
+    `hours` int(11),
+    `date` DATE,
+    FOREIGN KEY(`username`) REFERENCES `users`(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`area_name`) REFERENCES work_areas(`area_name`) ON DELETE CASCADE ON UPDATE CASCADE
+);	
 	
 

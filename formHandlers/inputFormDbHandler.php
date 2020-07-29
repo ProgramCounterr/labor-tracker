@@ -1,3 +1,4 @@
+<!-- Author: Peter Chen -->
 <?php
     if ($confirm) {
         include('model/connect-db.php');
