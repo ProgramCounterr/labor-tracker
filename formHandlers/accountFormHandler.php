@@ -1,3 +1,4 @@
+<!-- Authors: Rowan Dakota -->
 <?php
 require('model/connect-db.php');
 		
