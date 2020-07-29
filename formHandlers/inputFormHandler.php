@@ -1,3 +1,4 @@
+<!-- Author: Peter Chen -->
 <?php
 $hours = $workArea = $date = NULL;
 $hours_msg = $workArea_msg = $date_msg = NULL;
