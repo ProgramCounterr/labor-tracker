@@ -1,4 +1,4 @@
-<!-- Authors: Rowan Dakota and Peter Chen
+<!-- Authors: Rowan Dakota and Peter Chen -->
 <?php
     $result = 1;
     /** Authenticates the login form by checking for the given username and password in the database */

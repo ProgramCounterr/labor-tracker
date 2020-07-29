@@ -1,4 +1,4 @@
-<!-- Author: Rowan Dakota
+<!-- Author: Rowan Dakota -->
 <?php
 /** Make a table of all the work areas and populate it (if they don't exist already) */
 function initWorkAreasDb() {
