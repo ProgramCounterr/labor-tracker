@@ -24,6 +24,7 @@ function validateForm() {
         else
             $workArea = trim($_GET['work-area']);
 
+        date_default_timezone_set('America/New_York');
         if(empty($_GET['date'])) {
             $date_msg = "Please select the day (EDT) that you worked these hours";
             $valid = false;
