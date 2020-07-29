@@ -1,3 +1,4 @@
+Authors: Peter Chen and Rowan Dakota
 models/connect-db.php --> Use PDO to connect to a database; must update credentials to match local setup
 models/workAreas-db.php --> Script to create a table in the database for work areas, if one doesn't already exist
 
