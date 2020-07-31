@@ -35,7 +35,10 @@ if (isset($_SESSION['user']))
         <div class="buffer"><?php include('formHandlers/inputFormHandler.php'); ?></div>
 
         <div class="container">
-
+			
+			<div style="text-align: center; font-weight: bold;">Enter hours</div>
+			</br>
+			
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
                 <div class="row">
                     <div class="col-md-3">
@@ -48,7 +51,7 @@ if (isset($_SESSION['user']))
 
                     <div class="col-md-3">
                         <label for="work-area">Work area:</label>
-                        <input type="text" list="work-areas" name="work-area" id="work-area"
+                        <input type="text" list="work-areas" name="work-area" id="work-area" 
                             value="<?php if(isset($_GET['work-area']) && !$confirm) echo $_GET['work-area'] ?>"
                             <?php if(empty($_GET['work-area'])) { ?> autofocus <?php }; ?> />
                         <datalist id="work-areas">
@@ -78,6 +81,42 @@ if (isset($_SESSION['user']))
                     </div>
                 </div>
             </form>
+			
+			</br>
+			
+			<div style="text-align: center; font-weight: bold;">Delete entry</div>
+			</br>
+			
+			<div class="container">
+				<form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
+					<div class ="row">
+						<div class="col-md-3">
+							Hours <input type="number" name="dhours" class="form-control" required /> <br/>
+						</div>
+						<div class="col-md-3">
+							Work area <input list="dwork-areas" name="dwork-areas" class="form-control" id="dwork-areas" required>
+							<datalist id="dwork-areas">
+								<option value="Curds"></option>
+								<option value="Garden"></option>
+								<option value="Hammocks"></option>
+								<option value="Kettle"></option>
+								<option value="Pack Help"></option>
+								<option value="Pack Honcho"></option>
+								<option value="Seed Racks"></option>
+								<option value="Seeds"></option>
+								<option value="Tofu Hut"></option>
+								<option value="Trays"></option>
+							</datalist> 
+						</div>
+						<div class="col-md-3">
+							Date <input type="date" id="ddate" class="form-control" name="ddate" required>
+						</div>
+						<div class="col-md-3">
+							<input style="margin: 23px;" type="submit" value="delete" class="btn btn-danger"  />
+						</div>
+					</div>
+				</form>
+			</div>
             
             <h2 class="submissions">Recent submissions:</h2>
             <table class="submissions">
@@ -119,6 +158,78 @@ if (isset($_SESSION['user']))
                             ob_end_clean(); // clear echo statements since ob_start()
                             makeInputsTable();
                         }
+						
+						//attempts to delete an entry from 'inputs' and update 'users' and 'work_areas` with the appropriate labor balances
+						if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['ddate']) && isset($_GET['dwork-areas']) && isset($_GET['dhours'])){
+							include('model/connect-db.php');
+						
+							$wa_to_delete = trim($_GET['dwork-areas']);
+							$date_to_delete = trim($_GET['ddate']);
+							$hours_to_delete = trim($_GET['dhours']);
+						
+							//Check to see if the entry in 'inputs' actually exists
+							$query = "SELECT * FROM `inputs` WHERE area_name=:wa AND date=:date";
+							$statement = $db->prepare($query);
+							$statement->bindValue(':wa', $wa_to_delete);
+							$statement->bindValue(':date', $date_to_delete);
+							$statement->execute();
+							$itExists = $statement->fetch();
+
+							if(!$itExists) {
+								echo "<p style='color:red;'> There is no entry for " . $hours_to_delete . " hours of work on " . $wa_to_delete . " on " . $date_to_delete . "</p>";
+								$statement->closeCursor();
+								exit;
+							}
+
+							// update 'labor_balance' column of 'users' table with columns 'Username' (Primary Key), 'Password', and 'labor_balance'
+							$query = "UPDATE `users` SET `labor_balance`=`labor_balance`-:hours WHERE `username`=:user";
+							$statement = $db->prepare($query);
+							$statement->bindValue(':hours', $hours_to_delete);
+							$statement->bindValue(':user', $_SESSION['user']);
+							$result = $statement->execute();
+
+							if(!$result) {
+								print_r($statement->errorInfo());
+								$statement->closeCursor();
+								exit;
+							}
+							
+
+							// delete record from 'inputs' table 
+							// (which should have a primary key id that auto-increments and foreign keys `Username` and 'area_name'
+							// that should have ON DELETE CASCADE and ON UPDATE CASCADE constraints)
+							//        DELETE FROM `inputs` WHERE `area_name`="Trays" AND `date`="2020-07-26" AND `username`="Rowan" AND `hours`=5
+							$query = "DELETE FROM `inputs` WHERE `area_name`=:workArea AND `date`=:date AND `username`=:user AND `hours`=:hours";
+							$statement = $db->prepare($query);
+							$statement->bindValue(':workArea', $wa_to_delete);
+							$statement->bindValue(':date', $date_to_delete);
+							$statement->bindValue(':user', $_SESSION['user']);
+							$statement->bindValue(':hours', $hours_to_delete);
+							$result = $statement->execute();
+
+							if(!$result) {
+								print_r($statement->errorInfo());
+								$statement->closeCursor();
+								exit;
+							}
+
+
+							$query = "UPDATE `work_areas` SET `labor_balance`=`labor_balance`+:hours WHERE `area_name`=:workArea";
+							$statement = $db->prepare($query);
+							$statement->bindValue(':workArea', $wa_to_delete);
+							$statement->bindValue(':hours', $hours_to_delete);
+							$result = $statement->execute();
+
+							if(!$result) {
+								print_r($statement->errorInfo());
+								$statement->closeCursor();
+								exit;
+							}
+							
+							$statement->closeCursor();
+						
+						}
+						
                     ?>
                 </tbody>
             </table>
