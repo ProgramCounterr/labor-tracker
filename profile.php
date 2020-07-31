@@ -32,8 +32,6 @@ if (isset($_SESSION['user']))
             <h2><?= "Welcome, " . $_SESSION['user'] . "!"; ?></h2>
         </div>
 
-		<div id="chart"></div>
-
 		<p id="total-hours">
 			<?php
 				require('model/connect-db.php');
@@ -60,6 +58,8 @@ if (isset($_SESSION['user']))
 				echo "<b>You have worked:</b> " . $result['labor_balance'] . " hours";
 			?>
 		</p>
+		
+		<div id="chart"></div>
 
         <label class="checkbox"><input type="checkbox" id="change-view"> Show Hours Worked per Day</label>
 
