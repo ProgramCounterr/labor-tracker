@@ -5,7 +5,8 @@ require('model/connect-db.php');
 		if ($_SERVER['REQUEST_METHOD'] == "POST"){
 			
 			$newUser = trim($_POST['username']);
-			$newPwd = trim($_POST['password']);
+			
+			$hashNewPwd = md5(trim($_POST['password']));
 			
 			//check if username is unique
 			$query = "SELECT * FROM `users` WHERE BINARY `username`=:user";
@@ -21,17 +22,17 @@ require('model/connect-db.php');
 			}			
 			
 			$oldUser = $_SESSION['user'];
-			$oldPwd = $_SESSION['pwd'];
+			$hashOldPwd = $_SESSION['pwd'];
 			
 			$query = "UPDATE `users` SET `username`=:nUser, `password`=:nPwd WHERE `username`=:oUser AND `password`=:oPwd";
 	
 			$statement = $db->prepare($query);
 	
 			$statement->bindValue(':nUser', $newUser);
-			$statement->bindValue(':nPwd', $newPwd);
+			$statement->bindValue(':nPwd', $hashNewPwd);
 			
 			$statement->bindValue(':oUser', $oldUser);
-			$statement->bindValue(':oPwd', $oldPwd);
+			$statement->bindValue(':oPwd', $hashOldPwd);
 	
 			$result = $statement->execute();
 			if (!$result){
@@ -44,12 +45,12 @@ require('model/connect-db.php');
 				echo "<div style='text-align: center;' class='bg-success text-white'>Success! $newUser, your username and password have been updated! </div>";
 				//update session variable
 				$_SESSION['user'] = $newUser;
-				$_SESSION['pwd'] = $newPwd;
+				$_SESSION['pwd'] = $hashNewPwd;
 
 				//update cookies, if any
 				if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
 					setcookie('username', $newUser, time() + 86400);
-					setcookie('password', $newPwd, time() + 86400);
+					setcookie('password', $hashNewPwd, time() + 86400);
 				}
 			}
 		

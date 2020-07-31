@@ -1,16 +1,25 @@
 <!-- Authors: Rowan Dakota and Peter Chen -->
 <?php
-    $result = 1;
+    /** display error message and exit */
+    function reject() {
+        echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
+        exit();
+    }
     /** Authenticates the login form by checking for the given username and password in the database */
     function authenticate($user, $pwd) {
+        // if the values contain only alphanumeric data, display error and exit
+        if(!ctype_alnum($user) || !ctype_alnum($pwd))
+            reject();
+
         require('model/connect-db.php');
+        $hashPwd = md5($pwd); // hash the password
         // :user and :pwd are bound to the variables down below
         $query = "SELECT * FROM `users` WHERE BINARY `username`=:user AND BINARY `password`=:pwd";
 
         $statement = $db->prepare($query);
 
         $statement->bindValue(':user', $user);
-        $statement->bindValue(':pwd', $pwd);
+        $statement->bindValue(':pwd', $hashPwd);
         
         $statement->execute();
         
@@ -19,9 +28,8 @@
         
         // This is the case where the username/password is incorrect
         if (!$result){
-            echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
             $statement->closeCursor();
-            exit;
+            reject();
         }
         // if the statement is correctly fetched, then it goes to the profile page
         else{
@@ -31,13 +39,13 @@
             $_SESSION['user'] = $user;
             // TODO: change this so it stores an encoding of the password later.
             // something like, $_SESSION['pwd'] = md5($pwd);
-            $_SESSION['pwd'] = $pwd;
+            $_SESSION['pwd'] = $hashPwd;
 
             // puts cookie in user's browser if 'Remember me' option is checked
             if(isset($_POST['remember']) && $_POST['remember'] == "1")
             {
                 setcookie('username', $user, time() + 86400); // set for one day
-                setcookie('password', $pwd, time() + 86400);
+                setcookie('password', $hashPwd, time() + 86400);
             }
 
             // branches to other page
