@@ -176,7 +176,7 @@ if (isset($_SESSION['user']))
 							$itExists = $statement->fetch();
 
 							if(!$itExists) {
-								echo "<p style='color:red;'> There is no entry for " . $hours_to_delete . " hours of work in " . $wa_to_delete . " on " . $date_to_delete . "</p>";
+								echo "<p style='color:red;'> There is no entry for " . $hours_to_delete . " hours of work at the " . $wa_to_delete . " on " . $date_to_delete . "</p>";
 								$statement->closeCursor();
 								exit;
 							}
