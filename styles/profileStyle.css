@@ -12,7 +12,9 @@ h2 {
 p#total-hours {
 	font-size: 17px;
 	position:relative;
-	left: 850px;
+	left: 50%;
+	margin-top: 3%;
+	transform: translate(-50%, -50%);
 	width: 260px;
 }
 
