@@ -38,7 +38,7 @@ if (isset($_SESSION['user']))
         </div>
 
 		<div class="container">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart"></canvas>
         </div>
 		
 		<p id="total-hours">

@@ -1,4 +1,8 @@
 /* author: Peter Chen */
+body {
+    font-size: 17px;
+}
+
 .buffer {
     height: 80px;
     color: green;
@@ -35,7 +39,9 @@ h2.submissions {
 }
 
 table {
-    min-width: 400px;
+    min-width: 70%;
+    margin-bottom: 5%;
+    margin-top: 2%;
 }
 
 table, th, td {

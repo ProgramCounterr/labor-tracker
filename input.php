@@ -36,7 +36,7 @@ if (isset($_SESSION['user']))
 
         <div class="container">
 			
-			<div style="text-align: center; font-weight: bold;">Enter hours</div>
+			<div style="text-align: center; font-size: 20px; font-weight: bold;">Enter hours</div>
 			</br>
 			
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
@@ -84,7 +84,7 @@ if (isset($_SESSION['user']))
 			
 			<br/>
 			
-			<div style="text-align: center; font-weight: bold;">Delete entry</div>
+			<div style="text-align: center; font-size: 20px; font-weight: bold;">Delete entry</div>
 			<br/>
 			
 			<div class="container">

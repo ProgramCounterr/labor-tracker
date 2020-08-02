@@ -3,8 +3,8 @@
 	width: 100%;
 }
 
-h2 {
-	color: rgb(94, 103, 112);
+.welcome h2 {
+	color: rgb(0, 0, 0);
 	font-size: 30px;
 	text-align: center;
 }
@@ -18,12 +18,7 @@ p#total-hours {
 	width: 260px;
 }
 
-#chart {
-	height: 200px;
-	width: 200px;
-}
-
-label.checkbox {
-	position: relative;
-	left: 850px;
+#myChart {
+	height: 400px;
+	width: 400px;
 }
