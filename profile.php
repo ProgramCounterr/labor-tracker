@@ -77,13 +77,19 @@ if (isset($_SESSION['user']))
 				$statement->bindValue(':user', $user);
 				$statement->execute();
 				$results = $statement->fetchAll();
+				if (!$results){
+					//just for production. Don't let user know what table names are
+					print_r($statement->errorInfo());
+					$statement->closeCursor();
+					exit;
+				}
 				$statement->closeCursor();
 				return $results;
 			}
 			$dataTable = getStats();
 		?>
 
-		<script>
+		<script> 
 			// convert php array into js array and store in a variable
 			let dataTable = <?php echo json_encode($dataTable); ?>;
         </script>
