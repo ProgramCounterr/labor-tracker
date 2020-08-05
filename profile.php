@@ -31,8 +31,8 @@ if (isset($_SESSION['user']))
 ?>
  
     <body>
-        <?php include('header.html'); ?>
-        
+		<?php include('header.php'); ?>
+		
         <div class="welcome">
             <h2><?= "Welcome, " . $_SESSION['user'] . "!"; ?></h2>
         </div>
@@ -73,7 +73,7 @@ if (isset($_SESSION['user']))
 				include('model/connect-db.php');
 				$query = "SELECT hours, date FROM `inputs` WHERE `username`=:user";
 				$statement = $db->prepare($query);
-				$user = "username"; // would get from session array in actual implementation
+				$user = $_SESSION['user'];
 				$statement->bindValue(':user', $user);
 				$statement->execute();
 				$results = $statement->fetchAll();
