@@ -1,0 +1,67 @@
+/* author: Peter Chen */
+/** General html and body styling */
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
+}
+
+/** Header styling */
+header nav {
+    height: 80px;
+    min-width: 100%;
+    background-color: teal;
+}
+
+header > nav a {
+    color: white;
+    text-decoration: none;
+}
+
+#site-name {
+    font: 30px "Comic Sans MS", sans-serif;
+    font-weight: 600;
+    position: absolute;
+    left: 5%;
+	margin: 15px;
+}
+
+    a#site-name:hover, a#site-name:focus {
+        color: white;
+        outline: none;
+        text-decoration: underline;
+    }
+
+ul.nav {
+    height: 100%;
+    float: right;
+}
+
+header ul.nav li {
+    padding: 5px;
+    margin: auto 5px;
+}
+
+header ul.nav li a {
+    height: 100%;
+    width: 100%;
+    display: block;
+    opacity: .80;
+}
+
+    header ul.nav li a:hover, header ul.nav li a:focus {
+        color: white;
+        text-decoration: none;
+        opacity: 1.0;
+        outline: none;
+    }
+
+#logo {
+  position: absolute;
+  margin: 6px;
+}
