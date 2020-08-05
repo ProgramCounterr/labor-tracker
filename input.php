@@ -28,7 +28,7 @@ if (isset($_SESSION['user']))
 ?>
 
     <body>
-        <?php include('header.html'); ?>
+        <?php include('header.php'); ?>
 
         <?php include('model/workAreas-db.php'); ?>
 
