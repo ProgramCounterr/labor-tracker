@@ -6,7 +6,10 @@
                 <ul class="nav">
                     <li><a href="input.php"><i class="fas fa-clock"></i>Enter Hours</a></li>
                     <li><a href="profile.php"><i class="fas fa-user"></i>Profile</a></li>
-                    <li><a href="account.php"><i class="fas fa-address-card"></i>Account</a></li>
+                    <li>
+                        <a href=<?= "http://localhost:4200?page=account&user=" . $_SESSION['user'] ?> >
+                        <i class="fas fa-address-card"></i>Account</a>
+                    </li>
                     <li><a href="logout.php"><i class="fas fa-sign-in-alt"></i>Logout</a></li>
                 </ul>
             </nav>
