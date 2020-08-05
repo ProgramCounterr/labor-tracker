@@ -59,6 +59,40 @@
 
 		<script src="js/loginScript.js"></script>
 		
-		<?php include('formHandlers/loginFormHandler.php'); ?>
+		<?php
+			include('formHandlers/loginFormHandler.php'); // authenticate function
+			// The isset makes sure that there is something in the text fields
+			if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+				$username = trim($_COOKIE['username']);
+				$password = trim($_COOKIE['password']);
+				$authorized = authenticate($username, $password);
+				if($authorized) {
+					session_start();
+					$_SESSION['user'] = $username;
+				}
+				else
+					echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
+			}
+
+			else if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {	
+				$username = trim($_POST['username']);
+				$password = trim($_POST['password']);
+				$authorized = authenticate($username, $password);
+				if($authorized) {
+					session_start();
+					$_SESSION['user'] = $username;
+					// puts cookie in user's browser if 'Remember me' option is checked
+					if(isset($_POST['remember']) && $_POST['remember'] == "1")
+					{
+						setcookie('username', $username, time() + 86400); // set for one day
+						setcookie('password', md5($password), time() + 86400);
+					}
+					// redirects to other page
+					header('Location: profile.php');
+				}
+				else
+					echo "<div style='text-align: center;' class='bg-danger text-white'>The username or password is incorrect</div>";
+			}
+		?>
 	</body>
 </html>
