@@ -31,8 +31,9 @@ if (isset($_SESSION['user']))
 {
 ?>
 
+
 	<body>
-		<?php include('header.html'); ?>
+		<?php include('header.html');?>
 		
 		<div class="container">
 		

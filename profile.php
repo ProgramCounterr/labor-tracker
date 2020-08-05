@@ -73,7 +73,7 @@ if (isset($_SESSION['user']))
 				include('model/connect-db.php');
 				$query = "SELECT hours, date FROM `inputs` WHERE `username`=:user";
 				$statement = $db->prepare($query);
-				$user = "username"; // would get from session array in actual implementation
+				$user = $_SESSION['user']; // would get from session array in actual implementation
 				$statement->bindValue(':user', $user);
 				$statement->execute();
 				$results = $statement->fetchAll();
