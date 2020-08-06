@@ -48,11 +48,8 @@ if (isset($_SESSION['user']))
 				$user = trim($_SESSION['user']);
 				
 				$query = "SELECT * FROM `users` WHERE `username`=:user ";
-
 				$statement = $db->prepare($query);
-
 				$statement->bindValue(':user', $user);
-	
 				$statement->execute();
 				$result = $statement->fetch();
 
