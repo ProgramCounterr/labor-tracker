@@ -18,7 +18,7 @@
             <label for="fontFamilies" id="fontFamily">Font family: </label>
             <div style="width: 175px">
                 <select class="custom-select" [(ngModel)]="fontFamily" name="fontFamilies">
-                    <option *ngFor="let font of fontFamilies">{{font.name}} </option>
+                    <option *ngFor="let font of fontFamilies" [ngStyle]="{'font-family': font.name}">{{font.name}} </option>
                 </select>
             </div>
             <button (click)="toggleDark()" class="btn btn-dark" id="darkmode">
