@@ -7,4 +7,9 @@
 
 #notice {
     color: red;
+    padding-bottom: 5px;
+}
+
+.container {
+    padding-bottom: 1%;
 }

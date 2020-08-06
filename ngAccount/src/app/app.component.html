@@ -1,2 +1,30 @@
 <app-header></app-header>
-<app-account-form></app-account-form>
+<!-- author: Rowan Dakota -->
+<body [ngStyle]="{'font-size.px': fontSize, 'font-family': fontFamily}" [ngClass]="{darkmode: is_dark}">
+    <div class="container">
+        <button (click)="toggleSettings()" class="btn btn-outline-secondary" id="settings">
+                <div *ngIf="!show_settings"><i class="fas fa-cog"></i>
+                </div>
+                <div *ngIf="show_settings"><i class="fas fa-cog"></i>
+                </div>
+        </button>
+        <div *ngIf="show_settings">
+            <label for="fontSize" id="fontSize">Font size: </label>
+            <div style="width: 100px">
+                <select class="custom-select" [(ngModel)]="fontSize" name="fontSize">
+                    <option *ngFor="let font of fontSizes" value="{{font.size}}">{{font.name}} </option>
+                </select>
+            </div>
+            <label for="fontFamilies" id="fontFamily">Font family: </label>
+            <div style="width: 175px">
+                <select class="custom-select" [(ngModel)]="fontFamily" name="fontFamilies">
+                    <option *ngFor="let font of fontFamilies">{{font.name}} </option>
+                </select>
+            </div>
+            <button (click)="toggleDark()" class="btn btn-dark" id="darkmode">
+                Dark mode
+            </button>
+        </div>
+    </div>
+    <app-account-form></app-account-form>
+</body>

@@ -4,7 +4,6 @@
     <div class="container">
         <form #accountForm="ngForm" (submit)="onSubmit(accountForm.value)">
             <p id="notice">You will be required to login again after updating your credentials</p>
-            <br/>
             Current Password: 
             <input type="password" [ngModel] #pwd="ngModel" name="password" class="form-control" placeholder="Password" autofocus required />
             <span class="alert-danger" *ngIf="pwd.invalid && pwd.touched" id="pwdError">

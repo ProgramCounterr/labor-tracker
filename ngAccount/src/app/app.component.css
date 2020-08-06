@@ -1,0 +1,21 @@
+.darkmode {
+	background-color: rgb(53, 54, 58);
+	color: white;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+label.fontFamily, label.fontSize {
+    margin-top: 5px;
+}
+
+button#settings {
+    border: 0px;
+    outline: none;
+}
+
+button#darkmode {
+    border: 0px;
+    margin-top: 7px;
+    outline: none;
+}
