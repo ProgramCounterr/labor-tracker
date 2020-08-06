@@ -71,6 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 		)));
 	
 	$newUser = trim($data[0]['newUsername']);
+	if(!ctype_alnum($newUser) || !ctype_alnum(trim($data[0]['newPassword'])))
+		die(json_encode(array(
+			'message' => "Please use only alphanumeric characters for your new username and new password",
+			'code' => 403
+		)));
+
 	$hashNewPwd = md5(trim($data[0]['newPassword']));
 	require('../model/connect-db.php');
 	// check if username is unique
@@ -104,15 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 	$result = $statement->execute();
 	$statement->closeCursor();
 	if (!$result) {
-
 		// send error response (in json format) and exit
 		echo json_encode(array(
 			'message' => 'Unable to update database',
 			'code' => 500
 		));
 	}
-	// FIXME: DOES NOT WORK
+
 	else {
+		// FIXME: session and cookie setting code does not work
 		session_start();
 		// update session variable
 		$_SESSION['user'] = $newUser . "Old User: " . $oldUser . " END";
