@@ -8,13 +8,13 @@ Backend:
 -PHP for state maintenance (session, cookies), server-side form validation, database queries, and handling requests from the frontend  
 -phpMyAdmin was used along with MySQL to manage the database  
 **Features:**  
-* Login authentication
+* Login authentication  
 ![login](/images/login.gif?raw=true)
 -Not shown but 'Remember me' functionality has also been implemented using cookies  
-* Password hashing
+* Password hashing  
 ![password hashing](/images/password_hashing.JPG?raw=true)
-* Support for multiple, simultaneous users
+* Support for multiple, simultaneous users  
 ![simultaneous users](/images/simultaneous_users.gif?raw=true)
 -Also shown was redirection in the case that the user tries to access profile page without logging in  
-* Input and display of user data
+* Input and display of user data  
 ![input and display of user data](/images/input.gif?raw=true)
