@@ -7,3 +7,13 @@ Frontend:
 Backend:  
 -PHP for state maintenance (session, cookies), server-side form validation, database queries, and handling requests from the frontend  
 -phpMyAdmin was used along with MySQL to manage the database
+**Features**  
+* Login authentication
+![login](/images/login.gif)
+-Not shown but 'Remember me' functionality has also been implemented
+* Password hashing
+![password hashing](/images/password_hashing.jpg)
+* Support for multiple, simultaneous users
+![simultaneous users](/images/simultaneous_users.gif)
+* Input and display of user data
+![input and display of user data](/images/input.gif)
