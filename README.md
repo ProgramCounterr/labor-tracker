@@ -6,14 +6,15 @@ Frontend:
 -Account page made using Angular  
 Backend:  
 -PHP for state maintenance (session, cookies), server-side form validation, database queries, and handling requests from the frontend  
--phpMyAdmin was used along with MySQL to manage the database
+-phpMyAdmin was used along with MySQL to manage the database  
 **Features**  
 * Login authentication
 ![login](/images/login.gif)
--Not shown but 'Remember me' functionality has also been implemented
+-Not shown but 'Remember me' functionality has also been implemented using cookies  
 * Password hashing
 ![password hashing](/images/password_hashing.jpg)
 * Support for multiple, simultaneous users
 ![simultaneous users](/images/simultaneous_users.gif)
+-Also shown was redirection in the case that the user tries to access profile page without logging in  
 * Input and display of user data
 ![input and display of user data](/images/input.gif)
